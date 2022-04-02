@@ -1,12 +1,13 @@
-﻿using System;
+﻿using ProjectManagement.Core.Entities.Abstract;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ProjectManagement.Entities.Concreate
+namespace ProjectManagement.Entities.Concrete
 {
-    public class UserRole
+    public class UserRole:IEntity
     {
         public int Id { get; set; }
         public int UserId { get; set; }

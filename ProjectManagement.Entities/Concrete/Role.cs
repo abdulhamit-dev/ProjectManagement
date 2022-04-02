@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ProjectManagement.Entities.Concreate
+namespace ProjectManagement.Entities.Concrete
 {
     public class Role:EntityBase,IEntity
     {

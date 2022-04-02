@@ -5,11 +5,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ProjectManagement.Entities.Concreate
+namespace ProjectManagement.Entities.Concrete
 {
-    public class Project: EntityBase,IEntity
+    public class Team : EntityBase, IEntity
     {
-        public string Description { get; set; }
-        public int TeamId { get; set; }
+
     }
 }
