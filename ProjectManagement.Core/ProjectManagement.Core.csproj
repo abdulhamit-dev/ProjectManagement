@@ -12,7 +12,6 @@
     <Folder Include="DependencyResolvers\" />
     <Folder Include="Exceptions\" />
     <Folder Include="Extensions\" />
-    <Folder Include="Utilities\" />
   </ItemGroup>
 
   <ItemGroup>
