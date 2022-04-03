@@ -8,9 +8,9 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddControllers();
 
 builder.Services.AddDependencyResolvers(new ICoreModule[]
-            {
-                new CoreModule(),
-            });
+{
+    new CoreModule()
+});
 
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
