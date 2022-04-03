@@ -1,5 +1,6 @@
 ﻿using ProjectManagement.Core.Utilities.Result;
 using ProjectManagement.Entities.Concrete;
+using ProjectManagement.Entities.Dtos.User;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -15,5 +16,7 @@ namespace ProjectManagement.Business.Abstract
         IResult Add(User user);
         IResult Update(User user);
         IResult Delete(int id);
+        IDataResult<User> GetByName(string userName);
+        IDataResult<List<UserRoleDto>> GetClaim(int userId);
     }
 }

@@ -20,18 +20,18 @@ namespace ProjectManagement.Business.Concrete
         public IResult Add(Project project)
         {
             _projectDal.Add(project);
-            return new SuccessResult(MessageReurns.Add);
+            return new SuccessResult(MessageReturns.Add);
         }
 
         public IResult Delete(int id)
         {
             var project = _projectDal.Get(x => x.Id == id);
             if (project is null)
-                return new ErrorResult(MessageReurns.NotFound);
+                return new ErrorResult(MessageReturns.NotFound);
             else
             {
                 _projectDal.Delete(project);
-                return new SuccessResult(MessageReurns.Delete);
+                return new SuccessResult(MessageReturns.Delete);
             }
         }
 
@@ -44,7 +44,7 @@ namespace ProjectManagement.Business.Concrete
         {
             var project = _projectDal.Get(x => x.Id == id);
             if (project is null)
-                return new ErrorDataResult<Project>(null, MessageReurns.NotFound);
+                return new ErrorDataResult<Project>(null, MessageReturns.NotFound);
 
             return new SuccessDataResult<Project>(project);
 
@@ -54,7 +54,7 @@ namespace ProjectManagement.Business.Concrete
         public IResult Update(Project project)
         {
             _projectDal.Update(project);
-            return new SuccessResult(MessageReurns.Update);
+            return new SuccessResult(MessageReturns.Update);
         }
     }
 }

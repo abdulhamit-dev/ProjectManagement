@@ -21,18 +21,18 @@ namespace ProjectManagement.Business.Concrete
         public IResult Add(Role role)
         {
             _roleDal.Add(role);
-            return new SuccessResult(MessageReurns.Add);
+            return new SuccessResult(MessageReturns.Add);
         }
 
         public IResult Delete(int id)
         {
             var role = _roleDal.Get(x => x.Id == id);
             if (role is null)
-                return new ErrorResult(MessageReurns.NotFound);
+                return new ErrorResult(MessageReturns.NotFound);
             else
             {
                 _roleDal.Delete(role);
-                return new SuccessResult(MessageReurns.Delete);
+                return new SuccessResult(MessageReturns.Delete);
             }
         }
 
@@ -45,7 +45,7 @@ namespace ProjectManagement.Business.Concrete
         {
             var role = _roleDal.Get(x => x.Id == id);
             if (role is null)
-                return new ErrorDataResult<Role>(null, MessageReurns.NotFound);
+                return new ErrorDataResult<Role>(null, MessageReturns.NotFound);
 
             return new SuccessDataResult<Role>(role);
         }
@@ -53,7 +53,7 @@ namespace ProjectManagement.Business.Concrete
         public IResult Update(Role role)
         {
             _roleDal.Update(role);
-            return new SuccessResult(MessageReurns.Update);
+            return new SuccessResult(MessageReturns.Update);
         }
     }
 }
