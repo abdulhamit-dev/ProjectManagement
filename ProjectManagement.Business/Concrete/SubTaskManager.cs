@@ -1,5 +1,7 @@
 ﻿using ProjectManagement.Business.Abstract;
 using ProjectManagement.Business.Constant;
+using ProjectManagement.Business.ValidationRules.FluentValidation;
+using ProjectManagement.Core.Aspects.Autofac.Validation;
 using ProjectManagement.Core.Utilities.Result;
 using ProjectManagement.DataAccess.Abstract;
 using ProjectManagement.Entities.Concrete;
@@ -19,7 +21,7 @@ namespace ProjectManagement.Business.Concrete
         {
             _subTaskDal = subTaskDal;
         }
-
+        [ValidationAspect(typeof(SubTaskValidator))]
         public IResult Add(SubTask subTask)
         {
             _subTaskDal.Add(subTask);
@@ -51,7 +53,7 @@ namespace ProjectManagement.Business.Concrete
 
             return new SuccessDataResult<SubTask>(subTask);
         }
-
+        [ValidationAspect(typeof(SubTaskValidator))]
         public IResult Update(SubTask subTask)
         {
             _subTaskDal.Update(subTask);

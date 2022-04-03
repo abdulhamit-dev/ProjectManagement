@@ -1,13 +1,10 @@
 ﻿using ProjectManagement.Business.Abstract;
 using ProjectManagement.Business.Constant;
+using ProjectManagement.Business.ValidationRules.FluentValidation;
+using ProjectManagement.Core.Aspects.Autofac.Validation;
 using ProjectManagement.Core.Utilities.Result;
 using ProjectManagement.DataAccess.Abstract;
 using ProjectManagement.Entities.Concrete;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace ProjectManagement.Business.Concrete
 {
@@ -20,6 +17,7 @@ namespace ProjectManagement.Business.Concrete
             _roleDal = roleDal;
         }
 
+        [ValidationAspect(typeof(RoleValidator))]
         public IResult Add(Role role)
         {
             _roleDal.Add(role);
@@ -51,7 +49,7 @@ namespace ProjectManagement.Business.Concrete
 
             return new SuccessDataResult<Role>(role);
         }
-
+        [ValidationAspect(typeof(RoleValidator))]
         public IResult Update(Role role)
         {
             _roleDal.Update(role);

@@ -1,13 +1,10 @@
 ﻿using ProjectManagement.Business.Abstract;
 using ProjectManagement.Business.Constant;
+using ProjectManagement.Business.ValidationRules.FluentValidation;
+using ProjectManagement.Core.Aspects.Autofac.Validation;
 using ProjectManagement.Core.Utilities.Result;
 using ProjectManagement.DataAccess.Abstract;
 using ProjectManagement.Entities.Concrete;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace ProjectManagement.Business.Concrete
 {
@@ -19,7 +16,7 @@ namespace ProjectManagement.Business.Concrete
         {
             _projectDal = projectDal;
         }
-
+        [ValidationAspect(typeof(ProjectValidator))]
         public IResult Add(Project project)
         {
             _projectDal.Add(project);
@@ -29,7 +26,7 @@ namespace ProjectManagement.Business.Concrete
         public IResult Delete(int id)
         {
             var project = _projectDal.Get(x => x.Id == id);
-            if(project is null)
+            if (project is null)
                 return new ErrorResult(MessageReurns.NotFound);
             else
             {
@@ -53,6 +50,7 @@ namespace ProjectManagement.Business.Concrete
 
         }
 
+        [ValidationAspect(typeof(ProjectValidator))]
         public IResult Update(Project project)
         {
             _projectDal.Update(project);

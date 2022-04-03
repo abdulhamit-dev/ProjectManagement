@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace ProjectManagement.DataAccess.Concrete.EntityFramework.Repositories
 {
-    public class EfSubTaskdal : EfEntityRepositoryBase<SubTask, ProjectManagementContext>, ISubTaskDal
+    public class EfSubTaskDal : EfEntityRepositoryBase<SubTask, ProjectManagementContext>, ISubTaskDal
     {
     }
 }

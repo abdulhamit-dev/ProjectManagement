@@ -1,5 +1,7 @@
 ﻿using ProjectManagement.Business.Abstract;
 using ProjectManagement.Business.Constant;
+using ProjectManagement.Business.ValidationRules.FluentValidation;
+using ProjectManagement.Core.Aspects.Autofac.Validation;
 using ProjectManagement.Core.Utilities.Result;
 using ProjectManagement.DataAccess.Abstract;
 using ProjectManagement.Entities.Concrete;
@@ -19,7 +21,7 @@ namespace ProjectManagement.Business.Concrete
         {
             _userDal = userDal;
         }
-
+        [ValidationAspect(typeof(UserValidator))]
         public IResult Add(User user)
         {
             _userDal.Add(user);
@@ -51,7 +53,7 @@ namespace ProjectManagement.Business.Concrete
 
             return new SuccessDataResult<User>(user);
         }
-
+        [ValidationAspect(typeof(UserValidator))]
         public IResult Update(User user)
         {
             _userDal.Update(user);
