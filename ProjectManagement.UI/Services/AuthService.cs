@@ -19,7 +19,7 @@ namespace ProjectManagement.UI.Services
             StringContent stringContent = new(jsonString, Encoding.UTF8, "application/json");
             var response = await _httpClient.PostAsync("auth/login", stringContent);
             var result = response.Content.ReadAsStringAsync().Result;
-            if (result == "Kullanıcı Bulunamadı")
+            if (result == "User not found")
                 return new TokenResult();
             else
                 return JsonConvert.DeserializeObject<TokenResult>(result);
