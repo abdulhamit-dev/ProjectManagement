@@ -1,9 +1,30 @@
+using Microsoft.AspNetCore.Authentication.Cookies;
+using ProjectManagement.UI.Extensions;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
-builder.Services.AddControllersWithViews();
+builder.Services.AddControllersWithViews().AddRazorRuntimeCompilation();
+
+builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme).AddCookie(x =>
+{
+    x.LoginPath = "/auth/login";
+    x.AccessDeniedPath = "/auth/login";
+    x.LogoutPath = "/auth/logout";
+    x.ExpireTimeSpan = TimeSpan.FromMinutes(120);
+});
+
+builder.Services.AddHttpClient("AdminApi", (client) =>
+{
+    client.BaseAddress = new Uri(builder.Configuration["BaseUrl"]);
+});
+
+builder.Services.AddCustomServices(builder.Configuration);
+
 
 var app = builder.Build();
+
+
 
 // Configure the HTTP request pipeline.
 if (!app.Environment.IsDevelopment())
@@ -22,6 +43,6 @@ app.UseAuthorization();
 
 app.MapControllerRoute(
     name: "default",
-    pattern: "{controller=Home}/{action=Index}/{id?}");
+    pattern: "{controller=Auth}/{action=login}/{id?}");
 
 app.Run();
