@@ -14,6 +14,8 @@ builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationSc
     x.ExpireTimeSpan = TimeSpan.FromMinutes(120);
 });
 
+builder.Services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
+
 builder.Services.AddHttpClient("AdminApi", (client) =>
 {
     client.BaseAddress = new Uri(builder.Configuration["BaseUrl"]);

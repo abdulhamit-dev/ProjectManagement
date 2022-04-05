@@ -1,4 +1,4 @@
-﻿
+﻿@model HomeVM
 @{
     ViewData["Title"] = "Index";
     Layout = "~/Views/Shared/_Layout.cshtml";
@@ -26,10 +26,12 @@
                     <div class="card-header"> Projects</div>
                     <div class="card-body">
                         <div class="list-group list-group-flush">
-                            <a href="#" class="list-group-item list-group-item-action">Project 1</a>
-                            <a href="#" class="list-group-item list-group-item-action">Project 2</a>
-                            <a href="#" class="list-group-item list-group-item-action">Project 3</a>
+                            @foreach (var project in Model.projectVMs)
+                            {
+                                <a href="#" class="list-group-item list-group-item-action">@project.Name</a>
+                            }
                         </div>
+                        <button class="btn btn-primary btn-sm">Create Project</button>
                     </div>
                 </div>
                 
