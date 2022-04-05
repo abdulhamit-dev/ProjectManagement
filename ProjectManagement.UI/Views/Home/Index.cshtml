@@ -17,7 +17,7 @@
                         </div>
                     </div>
                 </div>
-                
+
             </div>
         </div>
         <div class="row mt-3">
@@ -34,22 +34,25 @@
                         <button class="btn btn-primary btn-sm">Create Project</button>
                     </div>
                 </div>
-                
+
             </div>
         </div>
         <div class="row mt-3">
-            <div class="col-md-12"
+            <div class="col-md-12">
                 <div class="card">
                     <div class="card-header"> Teams</div>
                     <div class="card-body">
                         <div class="list-group list-group-flush">
-                            <a href="#" class="list-group-item list-group-item-action">Team 1</a>
-                            <a href="#" class="list-group-item list-group-item-action">Team 2</a>
-                            <a href="#" class="list-group-item list-group-item-action">Team 3</a>
+                            @foreach (var team in Model.teamVMs)
+                            {
+                                <a href="#" class="list-group-item list-group-item-action">@team.Name</a>
+
+                            }
                         </div>
+                        <button class="btn btn-primary btn-sm">Create Team</button>
                     </div>
                 </div>
-               
+
             </div>
         </div>
     </div>
