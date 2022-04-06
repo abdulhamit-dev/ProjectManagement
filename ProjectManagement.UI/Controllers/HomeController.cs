@@ -19,13 +19,20 @@ namespace ProjectManagement.UI.Controllers
 
         public async Task<IActionResult> Index()
         {
-            var projectList= await _projectService.GetAll();
-            var teamList=await _teamService.GetAll();
+            var projectList = await _projectService.GetAll();
+            var teamList = await _teamService.GetAll();
             HomeVM homeVM = new HomeVM();
             homeVM.projectVMs = projectList.Data;
             homeVM.teamVMs = teamList.Data;
 
             return View(homeVM);
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> GetProjectDetail(int projectId)
+        {
+            var project= await _projectService.GetProjectTasks(projectId);
+            return PartialView("_ProjectTaskspp", project.Data);
         }
     }
 }

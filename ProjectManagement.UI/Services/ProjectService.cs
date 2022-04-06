@@ -14,5 +14,6 @@ namespace ProjectManagement.UI.Services
         public async Task<Result> Delete(int id) => await Delete(id, "project/delete/");
         public async Task<OnlyDataResult<ProjectAddUpdateVM>> GetById(int id) => await GetById<ProjectAddUpdateVM>(id, "project/getbyid/");
         public async Task<DataResult<ProjectVM>> GetAll() => await Get<ProjectVM>("project/getall");
+        public async Task<DataResult<ProjectTasksVM>> GetProjectTasks(int projectId) => await Get<ProjectTasksVM>("project/GetProjectTasks/" + projectId);
     }
 }
