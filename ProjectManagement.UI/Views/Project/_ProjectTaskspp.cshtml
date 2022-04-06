@@ -1,0 +1,25 @@
+﻿@using ProjectManagement.UI.Models.Project
+@model List<ProjectTasksVM>
+
+<table class="table table-sm table-bordered table-responsive">
+    <thead>
+        <tr>
+            <th >Is Complate</th>
+            <th>Description</th>
+            <th >Dua Date</th>
+            <th>User</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var task in Model)
+        {
+            string duaDate = $"{task.DueDate.Year}-{task.DueDate.Month.ToString("00")}-{task.DueDate.Day.ToString("00")}";
+        <tr>
+            <td> @Html.CheckBox("Is Complate", task.IsComplate, new { @Class = "form-check-input" }) </td>
+            <td><input type="text" value="@task.TaskDescription" class="form-control form-control-sm" />  </td>
+            <td><input type="date" value="@duaDate" class="form-control form-control-sm" /> </td>
+            <td>@task.UserName</td>
+        </tr>
+        }
+    </tbody>
+</table>

@@ -1,65 +1,12 @@
-﻿@model HomeVM
+﻿
 @{
     ViewData["Title"] = "Index";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<div class="row">
-    <div class="col-md-3">
-        <div class="row">
-            <div class="col-md-12">
-                <div class="card">
-                    <div class="card-body">
-                        <div class="list-group list-group-flush">
-                            <a href="#" class="list-group-item list-group-item-action">Home</a>
-                            <a href="#" class="list-group-item list-group-item-action">My Tasks</a>
-                            <a href="#" class="list-group-item list-group-item-action">Inbox</a>
-                        </div>
-                    </div>
-                </div>
+<p>Home..</p>
 
-            </div>
-        </div>
-        <div class="row mt-3">
-            <div class="col-md-12">
-                <div class="card">
-                    <div class="card-header"> Projects</div>
-                    <div class="card-body">
-                        <div class="list-group list-group-flush">
-                            @foreach (var project in Model.projectVMs)
-                            {
-                                <a href="#" onclick="SelectProject('@project.Id')" class="list-group-item list-group-item-action">@project.Name</a>
-                            }
-                        </div>
-                    </div>
-                </div>
-
-            </div>
-        </div>
-        <div class="row mt-3">
-            <div class="col-md-12">
-                <div class="card">
-                    <div class="card-header"> Teams</div>
-                    <div class="card-body">
-                        <div class="list-group list-group-flush">
-                            @foreach (var team in Model.teamVMs)
-                            {
-                                <a href="#" class="list-group-item list-group-item-action">@team.Name</a>
-
-                            }
-                        </div>
-                    </div>
-                </div>
-
-            </div>
-        </div>
-    </div>
-    <div class="col-md-9" id="homeContent">
-        Home...
-    </div>
-</div>
-
-<script>
+@*<script>
     function SelectProject(projectId) {
         $.post('@Url.Action("GetProjectDetail", "Home")',
             {
@@ -71,5 +18,5 @@
                 alert(message.responseText)
             });
     }
-</script>
+</script>*@
 
