@@ -1,14 +1,15 @@
-﻿@using ProjectManagement.UI.Models.Project
-@model List<ProjectVM>
-
+﻿@using ProjectManagement.UI.Models.ProjectTask
+@model List<ProjectTasksVM>
 @{
     ViewData["Title"] = "Index";
     Layout = "~/Views/Shared/_Layout.cshtml";
+    var projectId = Context.Request.Query["projectId"];
 }
-<button class="btn btn-success btn-sm m-1" data-bs-toggle="modal" data-bs-target="#add-update-modal" onclick="AddShowModal()">
-    <i class="fa-solid fa-plus"></i> New Project</button>
+
+<button class="btn btn-success btn-sm m-1" data-bs-toggle="modal" data-bs-target="#add-update-modal" onclick="AddShowModal('@projectId')"><i class="fa-solid fa-plus"></i> New Task</button>
 <hr />
-<div class="row" id="project-list">
+<div id="task-list">
+
     @Html.Partial("_Listpp", Model)
 </div>
 
@@ -17,7 +18,7 @@
     <div class="modal-dialog modal-lg">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-role-group" id="modal-project"></h5>
+                <h5 class="modal-role-group" id="modal-project-task"></h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body" id="model-content">
@@ -31,14 +32,14 @@
 </div>
 
 <script>
-    function AddShowModal() {
-        $('#modal-project').html('Project Add')
+    function AddShowModal(projectId) {
+        $('#modal-project-tasj').html('Task Add')
         $('#add-update-content').html('')
 
         $.ajax({
             type: "POST",
-            url: "@Url.Action("AddShowModal", "Project")",
-            data: '',
+            url: "@Url.Action("AddShowModal", "projectTask")",
+            data: { projectId: projectId },
             dataType: "html",
             success: function (data) {
                 $('#model-content').html(data)
@@ -49,14 +50,14 @@
         });
     }
 
-    function UpdateShowModal(projectId) {
-        $('#modal-project').html('Project Edit')
+    function UpdateShowModal(taskId) {
+        $('#modal-project-task').html('Task Edit')
         $('#update-content').html('')
         $.ajax({
             type: "POST",
-            url: "@Url.Action("UpdateShowModal", "project")",
+            url: "@Url.Action("UpdateShowModal", "projectTask")",
             data: {
-                projectId: projectId
+                taskId: taskId
             },
             dataType: "html",
             success: function (data) {
@@ -72,13 +73,13 @@
         if ($('#add-update').valid()) {
             $.ajax({
                 type: "POST",
-                url: "@Url.Action("Save","Project")",
+                url: "@Url.Action("Save","ProjectTask")",
                 data: $('#add-update').serialize(),
                 success: function (data) {
                     if (data.success == null) {
                         $('#add-update-modal').modal('toggle');
                         alertify.success('Successful');
-                        $('#project-list').html(data);
+                        $('#task-list').html(data);
                     }
                     else {
                         alertify.alert(data.message);
@@ -89,18 +90,4 @@
             });
         }
     }
-
-  
-    function SelectProject(projectId) {
-        $.post('@Url.Action("GetProjectDetail", "Project")',
-            {
-                projectId: projectId,
-            },
-            function (returnedData) {
-                $('#model-content').html(returnedData)
-            }).fail(function (message) {
-                alert(message.responseText)
-            });
-    }
-
 </script>

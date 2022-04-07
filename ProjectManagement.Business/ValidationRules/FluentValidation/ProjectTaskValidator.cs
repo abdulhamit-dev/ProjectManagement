@@ -12,7 +12,6 @@ namespace ProjectManagement.Business.ValidationRules.FluentValidation
     {
         public ProjectTaskValidator()
         {
-            RuleFor(x=>x.Name).NotEmpty().MaximumLength(50);
             RuleFor(x=>x.Description).NotEmpty().MaximumLength(250);
             RuleFor(x => x.CreatedDate).NotNull();
             RuleFor(x => x.CreatedUserId).NotNull();

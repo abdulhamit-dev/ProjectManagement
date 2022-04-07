@@ -16,6 +16,5 @@ namespace ProjectManagement.Business.Abstract
         IResult Add(Project project);
         IResult Update(Project project);
         IResult Delete(int id);
-        IDataResult<List<ProjectTasksDto>> GetProjectTasks(int projectId);
     }
 }

@@ -19,7 +19,6 @@ namespace ProjectManagement.DataAccess.Concrete.EntityFramework.DataMapping
             builder.Property(x=>x.CreatedUserId).IsRequired();
             builder.Property(x=>x.ProjectId).IsRequired();
             builder.Property(x=>x.CreatedDate).IsRequired();
-            builder.Property(x=>x.Name).IsRequired().HasMaxLength(100);
         }
     }
 }

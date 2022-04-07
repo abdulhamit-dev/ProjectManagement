@@ -7,8 +7,10 @@ using System.Threading.Tasks;
 
 namespace ProjectManagement.Entities.Concrete
 {
-    public class ProjectTask : EntityBase, IEntity
+    public class ProjectTask :  IEntity
     {
+        public int Id { get; set; }
+        public bool IsActive { get; set; } = true;
         public int ProjectId { get; set; }
         public int UserId { get; set; }
         public string Description { get; set; }

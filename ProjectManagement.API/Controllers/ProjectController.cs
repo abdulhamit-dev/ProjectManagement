@@ -38,15 +38,7 @@ namespace ProjectManagement.API.Controllers
                 return BadRequest(result);
         }
 
-        [HttpGet("GetProjectTasks/{id:int}")]
-        public IActionResult GetProjectTasks(int id)
-        {
-            var result = _projectService.GetProjectTasks(id);
-            if (result.Success)
-                return Ok(result);
-            else
-                return BadRequest(result);
-        }
+        
 
         [HttpPost("Add")]
         public IActionResult Add(Project project)

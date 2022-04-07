@@ -51,11 +51,6 @@ namespace ProjectManagement.Business.Concrete
 
         }
 
-        public IDataResult<List<ProjectTasksDto>> GetProjectTasks(int projectId)
-        {
-            return new SuccessDataResult<List<ProjectTasksDto>>(_projectDal.GetProjectTasks(projectId));
-        }
-
         [ValidationAspect(typeof(ProjectValidator))]
         public IResult Update(Project project)
         {

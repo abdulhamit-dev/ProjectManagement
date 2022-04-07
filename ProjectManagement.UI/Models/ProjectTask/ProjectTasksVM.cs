@@ -1,4 +1,4 @@
-﻿namespace ProjectManagement.UI.Models.Project
+﻿namespace ProjectManagement.UI.Models.ProjectTask
 {
     public class ProjectTasksVM
     {

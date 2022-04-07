@@ -5,6 +5,7 @@ using ProjectManagement.Core.Aspects.Autofac.Validation;
 using ProjectManagement.Core.Utilities.Result;
 using ProjectManagement.DataAccess.Abstract;
 using ProjectManagement.Entities.Concrete;
+using ProjectManagement.Entities.Dtos.Project;
 
 namespace ProjectManagement.Business.Concrete
 {
@@ -48,6 +49,12 @@ namespace ProjectManagement.Business.Concrete
 
             return new SuccessDataResult<ProjectTask>(projectTask);
         }
+
+        public IDataResult<List<ProjectTasksDto>> GetProjectTasks(int projectId)
+        {
+            return new SuccessDataResult<List<ProjectTasksDto>>(_projectTaskDal.GetProjectTasks( projectId));
+        }
+
         [ValidationAspect(typeof(ProjectTaskValidator))]
         public IResult Update(ProjectTask projectTask)
         {

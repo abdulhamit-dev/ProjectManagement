@@ -19,7 +19,7 @@ namespace ProjectManagement.UI.Controllers
             var project = await _projectService.GetAll();
             return View(project.Data);
         }
-
+     
         [HttpPost]
         public async Task<IActionResult> Save(ProjectAddUpdateVM projectAddUpdateVM)
         {
@@ -52,13 +52,6 @@ namespace ProjectManagement.UI.Controllers
             var team = await _teamService.GetAll();
             project.Data.TeamVMs = team.Data;
             return PartialView("_AddUpdatepp", project.Data);
-        }
-
-        [HttpPost]
-        public async Task<IActionResult> GetProjectDetail(int projectId)
-        {
-            var project = await _projectService.GetProjectTasks(projectId);
-            return PartialView("_ProjectTaskspp", project.Data);
         }
 
     }

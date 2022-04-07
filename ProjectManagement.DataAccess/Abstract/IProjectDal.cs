@@ -6,6 +6,6 @@ namespace ProjectManagement.DataAccess.Abstract
 {
     public interface IProjectDal : IEntityRepository<Project>
     {
-        public List<ProjectTasksDto> GetProjectTasks(int projectId);
+        
     }
 }

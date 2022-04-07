@@ -11,8 +11,9 @@
                 <div class="card-text"> @project.Description </div>
             </div>
             <div class="card-footer">
-                <button class="btn btn-outline-primary btn-sm"  
-                        data-bs-toggle="modal" data-bs-target="#add-update-modal" onclick="SelectProject('@project.Id')"><i class="fa-solid fa-bars-staggered"></i> Detail</button>
+                @Html.ActionLink("Detail", "Index", "ProjectTask",new { projectId = project.Id },new {@Class= "btn btn-outline-primary btn-sm" })
+                @*<button class="btn btn-outline-primary btn-sm"  
+                        data-bs-toggle="modal" data-bs-target="#add-update-modal" onclick="SelectProject('@project.Id')"><i class="fa-solid fa-bars-staggered"></i> Detail</button>*@
                 
                 <button class="btn btn-outline-info btn-sm" style="float:right" 
                         data-bs-toggle="modal" data-bs-target="#add-update-modal" onclick="UpdateShowModal('@project.Id')"><i class="fa-solid fa-pen"></i> Edit</button>
