@@ -16,9 +16,9 @@ namespace ProjectManagement.UI.Models.ProjectTask
         public ProjectTaskAddUpdateVM()
         {
             userVMs = new List<UserVM>();
-            userVMs.Add(new UserVM() { Id=1,Name="Admin"});
-            userVMs.Add(new UserVM() { Id=2,Name="User 1"});
-            userVMs.Add(new UserVM() { Id=3,Name="User 2"});
+            userVMs.Add(new UserVM() { Id=1,UserName="Admin"});
+            userVMs.Add(new UserVM() { Id=2,UserName ="User 1"});
+            userVMs.Add(new UserVM() { Id=3,UserName ="User 2"});
         }
     }
 }

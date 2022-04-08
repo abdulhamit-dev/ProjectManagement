@@ -11,6 +11,7 @@ namespace ProjectManagement.UI.Extensions
             services.AddHttpClient<ProjectService>(opt => { opt.BaseAddress = new Uri(baseUrl); });
             services.AddHttpClient<ProjectTaskService>(opt => { opt.BaseAddress = new Uri(baseUrl); });
             services.AddHttpClient<TeamService>(opt => { opt.BaseAddress = new Uri(baseUrl); });
+            services.AddHttpClient<UserService>(opt => { opt.BaseAddress = new Uri(baseUrl); });
         }
     }
 }

@@ -2,7 +2,7 @@
 
 namespace ProjectManagement.UI.Models.User
 {
-    public class UserVM
+    public class UserAddUpdateVM
     {
         public int Id { get; set; }
         public string UserName { get; set; }
@@ -10,7 +10,7 @@ namespace ProjectManagement.UI.Models.User
         public string Password { get; set; }
         public string Email { get; set; }
         public int TeamId { get; set; }
-        public bool IsActive { get; set; }
-        
+        public bool IsActive { get; set; } = true;
+        public List<TeamVM> TeamVMs { get; set; } = new List<TeamVM>();
     }
 }

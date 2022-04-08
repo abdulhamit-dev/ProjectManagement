@@ -1,12 +1,12 @@
-﻿@using ProjectManagement.UI.Models.ProjectTask
-@model List<ProjectTasksVM>
+﻿@using ProjectManagement.UI.Models.User
+@model List<UserVM>
 @{
     ViewData["Title"] = "Index";
     Layout = "~/Views/Shared/_Layout.cshtml";
-    var projectId = Context.Request.Query["projectId"];
 }
 
-<button class="btn btn-success btn-sm m-1" data-bs-toggle="modal" data-bs-target="#add-update-modal" onclick="AddShowModal('@projectId')"><i class="fa-solid fa-plus"></i> New Task</button>
+
+<button class="btn btn-success btn-sm m-1" data-bs-toggle="modal" data-bs-target="#add-update-modal" onclick="AddShowModal()"><i class="fa-solid fa-plus"></i> New User</button>
 <hr />
 <div id="model-list">
 
@@ -32,14 +32,14 @@
 </div>
 
 <script>
-    function AddShowModal(projectId) {
-        $('#modal-header').html('Task Add')
+    function AddShowModal() {
+        $('#modal-header').html('User Add')
         $('#add-update-content').html('')
 
         $.ajax({
             type: "POST",
-            url: "@Url.Action("AddShowModal", "projectTask")",
-            data: { projectId: projectId },
+            url: "@Url.Action("AddShowModal", "user")",
+            data: '',
             dataType: "html",
             success: function (data) {
                 $('#model-content').html(data)
@@ -50,14 +50,14 @@
         });
     }
 
-    function UpdateShowModal(taskId) {
-        $('#modal-header').html('Task Edit')
+    function UpdateShowModal(userId) {
+        $('#modal-header').html('User Edit')
         $('#update-content').html('')
         $.ajax({
             type: "POST",
-            url: "@Url.Action("UpdateShowModal", "projectTask")",
+            url: "@Url.Action("UpdateShowModal", "user")",
             data: {
-                taskId: taskId
+                userId: userId
             },
             dataType: "html",
             success: function (data) {
@@ -73,7 +73,7 @@
         if ($('#add-update').valid()) {
             $.ajax({
                 type: "POST",
-                url: "@Url.Action("Save","ProjectTask")",
+                url: "@Url.Action("Save","user")",
                 data: $('#add-update').serialize(),
                 success: function (data) {
                     if (data.success == null) {
@@ -91,3 +91,4 @@
         }
     }
 </script>
+

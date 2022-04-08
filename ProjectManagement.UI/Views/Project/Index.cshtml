@@ -8,7 +8,7 @@
 <button class="btn btn-success btn-sm m-1" data-bs-toggle="modal" data-bs-target="#add-update-modal" onclick="AddShowModal()">
     <i class="fa-solid fa-plus"></i> New Project</button>
 <hr />
-<div class="row" id="project-list">
+<div class="row" id="model-list">
     @Html.Partial("_Listpp", Model)
 </div>
 
@@ -17,7 +17,7 @@
     <div class="modal-dialog modal-lg">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-role-group" id="modal-project"></h5>
+                <h5 class="modal-role-group" id="modal-header"></h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body" id="model-content">
@@ -32,7 +32,7 @@
 
 <script>
     function AddShowModal() {
-        $('#modal-project').html('Project Add')
+        $('#modal-header').html('Project Add')
         $('#add-update-content').html('')
 
         $.ajax({
@@ -50,7 +50,7 @@
     }
 
     function UpdateShowModal(projectId) {
-        $('#modal-project').html('Project Edit')
+        $('#modal-header').html('Project Edit')
         $('#update-content').html('')
         $.ajax({
             type: "POST",
@@ -78,7 +78,7 @@
                     if (data.success == null) {
                         $('#add-update-modal').modal('toggle');
                         alertify.success('Successful');
-                        $('#project-list').html(data);
+                        $('#model-list').html(data);
                     }
                     else {
                         alertify.alert(data.message);

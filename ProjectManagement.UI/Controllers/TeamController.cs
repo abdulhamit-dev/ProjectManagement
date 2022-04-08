@@ -1,10 +1,12 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using ProjectManagement.UI.Models;
 using ProjectManagement.UI.Models.Team;
 using ProjectManagement.UI.Services;
 
 namespace ProjectManagement.UI.Controllers
 {
+    [Authorize]
     public class TeamController : Controller
     {
         private readonly TeamService _teamService;
