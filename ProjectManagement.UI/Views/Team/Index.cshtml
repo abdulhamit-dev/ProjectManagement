@@ -1,0 +1,92 @@
+﻿@using ProjectManagement.UI.Models.Team
+@model List<TeamVM>
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<button class="btn btn-success btn-sm m-1" data-bs-toggle="modal" data-bs-target="#add-update-modal" onclick="AddShowModal()"><i class="fa-solid fa-plus"></i> New Team</button>
+<hr />
+<div id="team-list">
+
+    @Html.Partial("_Listpp", Model)
+</div>
+
+<div class="modal fade" id="add-update-modal" tabindex="-1" aria-labelledby="AddUpdateModalLabel"
+     aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-role-group" id="modal-project-task"></h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body" id="model-content">
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary btn-sm" data-bs-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-success btn-sm" onclick="Save()">Save</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    function AddShowModal() {
+        $('#modal-project-tasj').html('Team Add')
+        $('#add-update-content').html('')
+
+        $.ajax({
+            type: "POST",
+            url: "@Url.Action("AddShowModal", "team")",
+            data: '',
+            dataType: "html",
+            success: function (data) {
+                $('#model-content').html(data)
+            },
+            error: function (xhr, status, error) {
+                alertify.alert(xhr.responseText)
+            }
+        });
+    }
+
+    function UpdateShowModal(teamId) {
+        $('#modal-project-task').html('Team Edit')
+        $('#update-content').html('')
+        $.ajax({
+            type: "POST",
+            url: "@Url.Action("UpdateShowModal", "team")",
+            data: {
+                teamId: teamId
+            },
+            dataType: "html",
+            success: function (data) {
+                $('#model-content').html(data)
+            },
+            error: function (xhr, status, error) {
+                alertify.alert(xhr.responseText)
+            }
+        });
+    }
+
+    function Save() {
+        if ($('#add-update').valid()) {
+            $.ajax({
+                type: "POST",
+                url: "@Url.Action("Save","team")",
+                data: $('#add-update').serialize(),
+                success: function (data) {
+                    if (data.success == null) {
+                        $('#add-update-modal').modal('toggle');
+                        alertify.success('Successful');
+                        $('#team-list').html(data);
+                    }
+                    else {
+                        alertify.alert(data.message);
+                    }
+                }, error: function (xhr, status, error) {
+                    alertify.alert(xhr.responseText)
+                }
+            });
+        }
+    }
+</script>

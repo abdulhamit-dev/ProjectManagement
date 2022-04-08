@@ -1,0 +1,19 @@
+﻿@using ProjectManagement.UI.Models.Team
+@model TeamAddUpdateVM
+
+<form id="add-update" asp-controller="team" asp-action="save" class="needs-validation" novalidate>
+    <input type="hidden" asp-for="Id" />
+    <div class="row gy-1">
+        <div class="col-md-12">
+            <label class="form-label">Name</label>
+            <input class="form-control form-control-sm" type="text" placeholder="Team Name" asp-for="Name" />
+            <span class="text-danger" asp-validation-for="Name"></span>
+        </div>
+    </div>
+</form>
+
+<script>
+    $(function () {
+        jQuery.validator.unobtrusive.parse("#add-update");
+    });
+</script>

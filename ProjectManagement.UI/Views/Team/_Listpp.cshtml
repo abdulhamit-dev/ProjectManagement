@@ -1,0 +1,25 @@
+﻿@using ProjectManagement.UI.Models.Team
+@model List<TeamVM>
+
+<table class="table table-lg" style="width:60%">
+    <thead>
+        <tr>
+            <th>Name</th>
+            <th>Edit</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var team in Model)
+        {
+            <tr>
+                <td>@team.Name</td>
+                <td>
+                    <button class="btn btn-outline-info btn-sm"
+                            data-bs-toggle="modal" data-bs-target="#add-update-modal" onclick="UpdateShowModal('@team.Id')">
+                        <i class="fa-solid fa-pen"></i>
+                    </button>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
