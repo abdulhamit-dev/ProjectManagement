@@ -8,10 +8,10 @@
 
 <button class="btn btn-success btn-sm m-1" data-bs-toggle="modal" data-bs-target="#add-update-modal" onclick="AddShowModal('@projectId')"><i class="fa-solid fa-plus"></i> New Task</button>
 <hr />
-<div id="model-list">
+    <div id="model-list">
+        @Html.Partial("_Listpp", Model)
+    </div>
 
-    @Html.Partial("_Listpp", Model)
-</div>
 
 <div class="modal fade" id="add-update-modal" tabindex="-1" aria-labelledby="AddUpdateModalLabel"
      aria-hidden="true">

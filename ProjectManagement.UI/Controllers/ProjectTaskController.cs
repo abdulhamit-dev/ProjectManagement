@@ -10,10 +10,11 @@ namespace ProjectManagement.UI.Controllers
     public class ProjectTaskController : Controller
     {
         private readonly ProjectTaskService _projectTaskService;
-
-        public ProjectTaskController(ProjectTaskService projectTaskService)
+        private readonly UserService _userService;
+        public ProjectTaskController(ProjectTaskService projectTaskService, UserService userService)
         {
             _projectTaskService = projectTaskService;
+            _userService = userService;
         }
 
         public async Task< IActionResult> Index(int projectId)
@@ -25,14 +26,23 @@ namespace ProjectManagement.UI.Controllers
         [HttpPost]
         public async Task<IActionResult> AddShowModal(int projectId)
         {
-            return PartialView("_AddUpdatepp", new ProjectTaskAddUpdateVM() { ProjectId=projectId});
+            var user =await _userService.GetAll();
+
+            var projectTask = new ProjectTaskAddUpdateVM() 
+            { 
+                ProjectId = projectId, 
+                userVMs = user.Data 
+            };
+
+            return PartialView("_AddUpdatepp", projectTask);
         }
 
         [HttpPost]
         public async Task<IActionResult> UpdateShowModal(int taskId)
         {
+            var user = await _userService.GetAll();
             var projectTask = await _projectTaskService.GetById(taskId);
-            
+            projectTask.Data.userVMs= user.Data;
             return PartialView("_AddUpdatepp", projectTask.Data);
         }
 
@@ -55,5 +65,6 @@ namespace ProjectManagement.UI.Controllers
                 return PartialView("_Listpp", projectTasks.Data);
             }
         }
+
     }
 }

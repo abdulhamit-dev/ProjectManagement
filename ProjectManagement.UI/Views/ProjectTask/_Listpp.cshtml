@@ -1,7 +1,7 @@
 ﻿@using ProjectManagement.UI.Models.ProjectTask
 @model List<ProjectTasksVM>
  
-        <table class="table table">
+        <table class="table table-hover" style="cursor:pointer">
             <thead>
                 <tr>
                     <th>Is Complate</th>
@@ -15,7 +15,7 @@
                 @foreach (var task in Model)
                 {
                     string rowStyle =(task.IsComplate)?"#e8ffe8": "white";
-                    <tr style="background-color:@rowStyle">
+                    <tr style="background-color:@rowStyle" onclick="alert('@task.ProjectName')">
                         <td>@task.IsComplate</td>
                         <td>@task.TaskDescription</td>
                         <td>@task.DueDate.ToShortDateString()</td>
