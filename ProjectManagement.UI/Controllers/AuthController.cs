@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Mvc;
 using ProjectManagement.UI.Services;
+using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 
 namespace ProjectManagement.UI.Controllers
@@ -25,9 +26,13 @@ namespace ProjectManagement.UI.Controllers
             var tokenResult = await _authService.GetToken(username, password);
             if (tokenResult.Token is not null)
             {
+                var tokenHandler = new JwtSecurityTokenHandler();
+                var jwtSecurityToken = tokenHandler.ReadJwtToken(tokenResult.Token);
+
                 var claims = new List<Claim>
                     {
                         new Claim(ClaimTypes.Name,username),
+                        new Claim("UserId",jwtSecurityToken.Claims.First(claim => claim.Type == "UserId").Value),
                         new Claim("Token",tokenResult.Token),
                         new Claim("Expiration",tokenResult.Expiration)
                     };
@@ -35,6 +40,9 @@ namespace ProjectManagement.UI.Controllers
                 var zaman = Convert.ToDateTime(tokenResult.Expiration);
                 var userIdentity = new ClaimsIdentity(claims, CookieAuthenticationDefaults.AuthenticationScheme);
                 await HttpContext.SignInAsync(CookieAuthenticationDefaults.AuthenticationScheme, new ClaimsPrincipal(userIdentity), new AuthenticationProperties { ExpiresUtc = zaman.AddHours(1) });
+
+                
+
                 return Json(true);
             }
             else

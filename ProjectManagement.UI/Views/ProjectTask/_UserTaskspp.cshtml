@@ -1,0 +1,32 @@
+﻿@using ProjectManagement.UI.Models.ProjectTask
+@model List<ProjectTasksVM>
+
+<table class="table table-hover">
+    <thead>
+        <tr>
+            <th>Is Complate</th>
+            <th>Project Name</th>
+            <th>TaskDescription</th>
+            <th>Dua Date</th>
+            <th>Edit</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var task in Model)
+        {
+            string rowStyle = (task.IsComplate) ? "#e8ffe8" : "white";
+            <tr style="background-color:@rowStyle">
+                <td>@task.IsComplate</td>
+                <td>@task.ProjectName</td>
+                <td>@task.TaskDescription</td>
+                <td>@task.DueDate.ToShortDateString()</td>
+                <td>
+                    <button class="btn btn-outline-info btn-sm"
+                            data-bs-toggle="modal" data-bs-target="#add-update-modal" onclick="UpdateShowModal('@task.TaskId')">
+                        <i class="fa-solid fa-pen"></i>
+                    </button>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

@@ -53,7 +53,7 @@ namespace ProjectManagement.Core.Utilities.Security.JWT
         private IEnumerable<Claim> SetClaims(User user, List<Role> operationClaims)
         {
             var claims = new List<Claim>();
-            claims.AddNameIdentifier(user.Id.ToString());
+            claims.AddUserId(user.Id.ToString());
             claims.AddUserName(user.UserName);
             claims.AddFullName(user.FullName);
             claims.AddRoles(operationClaims.Select(c => c.Name).ToArray());

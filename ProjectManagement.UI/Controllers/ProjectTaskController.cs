@@ -23,6 +23,13 @@ namespace ProjectManagement.UI.Controllers
             return View(projectTasks.Data);
         }
 
+        public async Task<IActionResult> UserTasks()
+        {
+            string userId = HttpContext.User.Claims.FirstOrDefault(x => x.Type == "UserId").Value;
+            var projectTasks = await _projectTaskService.GetUserTasks(Convert.ToInt32( userId));
+            return View(projectTasks.Data);
+        }
+
         [HttpPost]
         public async Task<IActionResult> AddShowModal(int projectId)
         {

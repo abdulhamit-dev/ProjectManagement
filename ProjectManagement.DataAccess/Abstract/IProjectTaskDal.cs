@@ -12,5 +12,6 @@ namespace ProjectManagement.DataAccess.Abstract
     public interface IProjectTaskDal: IEntityRepository<ProjectTask>
     {
         List<ProjectTasksDto> GetProjectTasks(int projectId);
+        List<ProjectTasksDto> GetUserTasks(int userId);
     }
 }

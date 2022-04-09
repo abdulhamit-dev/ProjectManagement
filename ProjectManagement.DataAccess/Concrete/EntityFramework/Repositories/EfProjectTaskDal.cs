@@ -32,5 +32,23 @@ namespace ProjectManagement.DataAccess.Concrete.EntityFramework.Repositories
             return result.ToList();
         }
 
+        public List<ProjectTasksDto> GetUserTasks(int userId)
+        {
+            using var context = new ProjectManagementContext();
+            var result = from project in context.Projects
+                         join task in context.ProjectTasks on project.Id equals task.ProjectId
+                         join user in context.Users on task.UserId equals user.Id
+                         where task.UserId == userId
+                         select new ProjectTasksDto
+                         {
+                             DueDate = task.DueDate,
+                             IsComplate = task.IsComplate,
+                             TaskDescription = task.Description,
+                             ProjectName = project.Name,
+                             TaskId = task.Id,
+                             UserName = user.UserName,
+                         };
+            return result.ToList();
+        }
     }
 }

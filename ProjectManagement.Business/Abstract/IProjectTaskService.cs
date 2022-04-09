@@ -13,6 +13,7 @@ namespace ProjectManagement.Business.Abstract
     {
         IDataResult<List<ProjectTask>> GetAll();
         IDataResult<List<ProjectTasksDto>> GetProjectTasks(int projectId);
+        IDataResult<List<ProjectTasksDto>> GetUserTasks(int userId);
         IDataResult<ProjectTask> GetById(int id);
         IResult Add(ProjectTask projectTask);
         IResult Update(ProjectTask projectTask);

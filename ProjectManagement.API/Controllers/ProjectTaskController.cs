@@ -73,5 +73,15 @@ namespace ProjectManagement.API.Controllers
             else
                 return BadRequest(result);
         }
+
+        [HttpGet("GetUserTasks/{id:int}")]
+        public IActionResult GetUserTasks(int id)
+        {
+            var result = _projectTaskService.GetUserTasks(id);
+            if (result.Success)
+                return Ok(result);
+            else
+                return BadRequest(result);
+        }
     }
 }

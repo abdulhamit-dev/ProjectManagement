@@ -16,5 +16,6 @@ namespace ProjectManagement.UI.Services
         public async Task<OnlyDataResult<ProjectTaskAddUpdateVM>> GetById(int id) => await GetById<ProjectTaskAddUpdateVM>(id, "projectTask/getbyid/");
         public async Task<DataResult<ProjectTasksVM>> GetAll() => await Get<ProjectTasksVM>("projectTask/getall");
         public async Task<DataResult<ProjectTasksVM>> GetProjectTasks(int projectId) => await Get<ProjectTasksVM>("projectTask/GetProjectTasks/" + projectId);
+        public async Task<DataResult<ProjectTasksVM>> GetUserTasks(int userId) => await Get<ProjectTasksVM>("projectTask/GetUserTasks/" + userId);
     }
 }

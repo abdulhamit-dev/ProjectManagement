@@ -1,0 +1,9 @@
+﻿@using ProjectManagement.UI.Models.ProjectTask
+@model List<ProjectTasksVM>
+@{
+    ViewData["Title"] = "UserTasks";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@Html.Partial("_UserTaskspp", Model)
+

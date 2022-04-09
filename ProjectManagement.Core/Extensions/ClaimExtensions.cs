@@ -20,6 +20,11 @@ namespace ProjectManagement.Core.Extensions
             claims.Add(new Claim("UserName", userName));
         }
 
+        public static void AddUserId(this ICollection<Claim> claims, string userId)
+        {
+            claims.Add(new Claim("UserId", userId));
+        }
+
         public static void AddNameIdentifier(this ICollection<Claim> claims, string nameIdentifier)
         {
             claims.Add(new Claim(ClaimTypes.NameIdentifier, nameIdentifier));

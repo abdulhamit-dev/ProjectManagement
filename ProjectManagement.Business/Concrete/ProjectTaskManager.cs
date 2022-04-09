@@ -55,6 +55,13 @@ namespace ProjectManagement.Business.Concrete
             return new SuccessDataResult<List<ProjectTasksDto>>(_projectTaskDal.GetProjectTasks( projectId));
         }
 
+        public IDataResult<List<ProjectTasksDto>> GetUserTasks(int userId)
+        {
+            var userTask = _projectTaskDal.GetUserTasks(userId);
+
+            return new SuccessDataResult<List<ProjectTasksDto>>(userTask);
+        }
+
         [ValidationAspect(typeof(ProjectTaskValidator))]
         public IResult Update(ProjectTask projectTask)
         {
