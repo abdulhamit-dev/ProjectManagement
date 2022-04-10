@@ -1,6 +1,7 @@
 ﻿using ProjectManagement.Business.Abstract;
 using ProjectManagement.Business.Constant;
 using ProjectManagement.Business.ValidationRules.FluentValidation;
+using ProjectManagement.Core.Aspects.Autofac.Caching;
 using ProjectManagement.Core.Aspects.Autofac.Validation;
 using ProjectManagement.Core.Utilities.Result;
 using ProjectManagement.DataAccess.Abstract;
@@ -17,7 +18,10 @@ namespace ProjectManagement.Business.Concrete
         {
             _projectDal = projectDal;
         }
+
+
         [ValidationAspect(typeof(ProjectValidator))]
+        [CacheRemoveAspect("IProjectService.Get")]
         public IResult Add(Project project)
         {
             _projectDal.Add(project);
@@ -36,6 +40,7 @@ namespace ProjectManagement.Business.Concrete
             }
         }
 
+        [CacheAspect(5)]
         public IDataResult<List<Project>> GetAll()
         {
             return new SuccessDataResult<List<Project>>(_projectDal.GetAll());
@@ -52,6 +57,7 @@ namespace ProjectManagement.Business.Concrete
         }
 
         [ValidationAspect(typeof(ProjectValidator))]
+        [CacheRemoveAspect("IProjectService.Get")]
         public IResult Update(Project project)
         {
             _projectDal.Update(project);
