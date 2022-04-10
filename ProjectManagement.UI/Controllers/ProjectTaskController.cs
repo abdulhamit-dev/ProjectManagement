@@ -73,5 +73,23 @@ namespace ProjectManagement.UI.Controllers
             }
         }
 
+        [HttpPost]
+        public async Task<IActionResult> UserTaskSave(ProjectTaskAddUpdateVM projectTaskAddUpdateVM)
+        {
+            Result result;
+
+            
+            result = await _projectTaskService.Update(projectTaskAddUpdateVM);
+
+            if (!result.Success)
+                return Json(result);
+            else
+            {
+                string userId = HttpContext.User.Claims.FirstOrDefault(x => x.Type == "UserId").Value;
+                var projectTasks = await _projectTaskService.GetUserTasks(Convert.ToInt32(userId));
+
+                return PartialView("_UserTaskspp", projectTasks.Data);
+            }
+        }
     }
 }

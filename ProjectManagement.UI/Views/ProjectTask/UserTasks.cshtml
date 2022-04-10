@@ -4,6 +4,68 @@
     ViewData["Title"] = "UserTasks";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
+<div id="model-list">
+    @Html.Partial("_UserTaskspp", Model)
+</div>
 
-@Html.Partial("_UserTaskspp", Model)
+<div class="modal fade" id="add-update-modal" tabindex="-1" aria-labelledby="AddUpdateModalLabel"
+     aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-role-group" id="modal-header"></h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body" id="model-content">
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary btn-sm" data-bs-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-success btn-sm" onclick="Save()">Save</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    function UpdateShowModal(taskId) {
+        $('#modal-header').html('Task Edit')
+        $('#update-content').html('')
+        $.ajax({
+            type: "POST",
+            url: "@Url.Action("UpdateShowModal", "projectTask")",
+            data: {
+                taskId: taskId
+            },
+            dataType: "html",
+            success: function (data) {
+                $('#model-content').html(data)
+            },
+            error: function (xhr, status, error) {
+                alertify.alert(xhr.responseText)
+            }
+        });
+    }
+
+       function Save() {
+        if ($('#add-update').valid()) {
+            $.ajax({
+                type: "POST",
+                url: "@Url.Action("UserTaskSave","ProjectTask")",
+                data: $('#add-update').serialize(),
+                success: function (data) {
+                    if (data.success == null) {
+                        $('#add-update-modal').modal('toggle');
+                        alertify.success('Successful');
+                        $('#model-list').html(data);
+                    }
+                    else {
+                        alertify.alert(data.message);
+                    }
+                }, error: function (xhr, status, error) {
+                    alertify.alert(xhr.responseText)
+                }
+            });
+        }
+    }
+</script>
 
