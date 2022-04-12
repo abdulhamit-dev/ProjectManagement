@@ -3,6 +3,8 @@ using ProjectManagement.Business.Constant;
 using ProjectManagement.Business.ValidationRules.FluentValidation;
 using ProjectManagement.Core.Aspects.Autofac.Caching;
 using ProjectManagement.Core.Aspects.Autofac.Validation;
+using ProjectManagement.Core.Aspects.Logging;
+using ProjectManagement.Core.CrossCuttingConcerns.Logging.Serilog;
 using ProjectManagement.Core.Utilities.Result;
 using ProjectManagement.DataAccess.Abstract;
 using ProjectManagement.Entities.Concrete;
@@ -40,6 +42,7 @@ namespace ProjectManagement.Business.Concrete
             }
         }
 
+        [LogAspect(typeof(SeqLogger))]
         [CacheAspect(5)]
         public IDataResult<List<Project>> GetAll()
         {
