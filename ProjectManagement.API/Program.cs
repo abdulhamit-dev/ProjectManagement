@@ -40,6 +40,8 @@ builder.Services.AddDependencyResolvers(new ICoreModule[]
     new CoreModule()
 });
 
+
+
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
