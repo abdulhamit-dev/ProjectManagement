@@ -38,17 +38,13 @@ namespace ProjectManagement.Core.CrossCuttingConcerns.Caching.Redis
 
         public object Get(string key)
         {
-            var test = _redisServer.Database.DebugObject(key);
-
-            return _redisServer.Database.DebugObject(key);
-            
-            //if (IsAdd(key))
-            //{
-            //    string jsonData = _redisServer.Database.StringGet(key);
-            //    var rv = JsonConvert.DeserializeObject(jsonData);
-            //    return rv;
-            //}
-            //return default;
+            if (IsAdd(key))
+            {
+                string jsonData = _redisServer.Database.StringGet(key);
+                var rv = JsonConvert.DeserializeObject(jsonData);
+                return rv;
+            }
+            return default;
         }
 
         public bool IsAdd(string key)
